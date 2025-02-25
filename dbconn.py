@@ -48,39 +48,6 @@ def getmsetup_tr(uno):
         db.close()
 
 
-def getseton():
-    db = pymysql.connect(host=hostenv, user=userenv, password=passwordenv, db=dbenv, charset=charsetenv)
-    cur15 = db.cursor()
-    data = []
-    print("GetKey !!")
-    try:
-        sql = "SELECT userNo from tradingSetup where attrib not like %s"
-        cur15.execute(sql, '%XXXUP')
-        data = cur15.fetchall()
-        return data
-    except Exception as e:
-        print('접속오류', e)
-    finally:
-        cur15.close()
-        db.close()
-
-
-def getsetonsvr(svrNo):
-    db = pymysql.connect(host=hostenv, user=userenv, password=passwordenv, db=dbenv, charset=charsetenv)
-    cur16 = db.cursor()
-    data = []
-    try:
-        sql = "SELECT distinct userNo from tradingSetup where attrib not like %s and serverNo=%s"
-        cur16.execute(sql, ('%XXXUP', svrNo))
-        data = cur16.fetchall()
-        return data
-    except Exception as e:
-        print('접속오류', e)
-    finally:
-        cur16.close()
-        db.close()
-
-
 def getsetonsvr_tr(svrNo):
     db = pymysql.connect(host=hostenv, user=userenv, password=passwordenv, db=dbenv, charset=charsetenv)
     cur16 = db.cursor()
@@ -94,21 +61,6 @@ def getsetonsvr_tr(svrNo):
         print('접속오류', e)
     finally:
         cur16.close()
-        db.close()
-
-
-def getupbitkey(uno):
-    db = pymysql.connect(host=hostenv, user=userenv, password=passwordenv, db=dbenv, charset=charsetenv)
-    cur17 = db.cursor()
-    try:
-        sql = "SELECT apiKey1, apiKey2 FROM pondUser WHERE userNo=%s and attrib not like %s"
-        cur17.execute(sql, (uno, '%XXXUP'))
-        data = cur17.fetchone()
-        return data
-    except Exception as e:
-        print('접속오류', e)
-    finally:
-        cur17.close()
         db.close()
 
 
@@ -149,23 +101,6 @@ def clearcache():
     cur18.execute(sql)
     cur18.close()
     db.close()
-
-
-def setdetail(setno):
-    global rows
-    db = pymysql.connect(host=hostenv, user=userenv, password=passwordenv, db=dbenv, charset=charsetenv)
-    cur20 = db.cursor()
-    row = None
-    try:
-        sql = "SELECT * FROM tradingSets WHERE setNo = %s"
-        cur20.execute(sql, setno)
-        rows = cur20.fetchone()
-    except Exception as e:
-        print('접속오류', e)
-    finally:
-        cur20.close()
-        db.close()
-    return rows
 
 
 def setdetail_tr(setno):
