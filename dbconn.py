@@ -37,7 +37,7 @@ def getmsetup_tr(uno):
     db = pymysql.connect(host=hostenv, user=userenv, password=passwordenv, db=dbenv, charset=charsetenv)
     cur13 = db.cursor()
     try:
-        sql = "select * from traceSetup where userNo=%s and attrib not like %s"
+        sql = "select * from bixxSetup where userNo=%s and attrib not like %s"
         cur13.execute(sql, (uno, '%XXXUP'))
         data = list(cur13.fetchall())
         return data
@@ -86,7 +86,7 @@ def getsetonsvr_tr(svrNo):
     cur16 = db.cursor()
     data = []
     try:
-        sql = "SELECT distinct userNo from traceSetup where attrib not like %s and serverNo=%s"
+        sql = "SELECT distinct userNo from bixxSetup where attrib not like %s and serverNo=%s"
         cur16.execute(sql, ('%XXXUP', svrNo))
         data = cur16.fetchall()
         return data
@@ -116,7 +116,7 @@ def getupbitkey_tr(uno):
     db = pymysql.connect(host=hostenv, user=userenv, password=passwordenv, db=dbenv, charset=charsetenv)
     cur17 = db.cursor()
     try:
-        sql = "SELECT apiKey1, apiKey2 FROM traceUser WHERE userNo=%s and attrib not like %s"
+        sql = "SELECT apiKey1, apiKey2 FROM bixxUser WHERE userNo=%s and attrib not like %s"
         cur17.execute(sql, (uno, '%XXXUP'))
         data = cur17.fetchone()
         return data
@@ -131,7 +131,7 @@ def getupbitkey_tr(uno):
     db = pymysql.connect(host=hostenv, user=userenv, password=passwordenv, db=dbenv, charset=charsetenv)
     cur17 = db.cursor()
     try:
-        sql = "SELECT apiKey1, apiKey2 FROM traceUser WHERE userNo=%s and attrib not like %s"
+        sql = "SELECT apiKey1, apiKey2 FROM bixxUser WHERE userNo=%s and attrib not like %s"
         cur17.execute(sql, (uno, '%XXXUP'))
         data = cur17.fetchone()
         return data
@@ -174,7 +174,7 @@ def setdetail_tr(setno):
     cur20 = db.cursor()
     row = None
     try:
-        sql = "SELECT * FROM traceSets WHERE setNo = %s"
+        sql = "SELECT * FROM bixxSets WHERE setNo = %s"
         cur20.execute(sql, setno)
         rows = cur20.fetchone()
     except Exception as e:
@@ -339,7 +339,7 @@ def setonoff(sno, yesno):
     db = pymysql.connect(host=hostenv, user=userenv, password=passwordenv, db=dbenv, charset=charsetenv)
     cur39 = db.cursor()
     try:
-        sql = "UPDATE traceSetup SET activeYN = %s where setupNo=%s"
+        sql = "UPDATE bixxSetup SET activeYN = %s where setupNo=%s"
         cur39.execute(sql, (yesno, sno))
         db.commit()
     except Exception as e:
