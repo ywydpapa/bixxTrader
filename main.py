@@ -552,11 +552,11 @@ def trService(svrno):
         print("구간 루프 에러 :", e)
     finally:
         ntime = datetime.now()
-        print('TRTRTRTRTRTRTRTRTRTRTRTRTRTRTR')
+        print('--------------------------------')
         print('거래점검 시간', str(ntime))
         print('점검 서버', str(svrno))
         print('서비스 버전', str(mainver))
-        print('TRTRTRTRTRTRTRTRTRTRTRTRTRTRTR')
+        print('--------------------------------')
         dbconn.clearcache()  # 캐쉬 삭제
 
 
